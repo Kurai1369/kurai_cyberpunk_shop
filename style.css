@@ -1,0 +1,427 @@
+/* === CYBERPUNK THEME VARIABLES === */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
+
+:root {
+    --bg-dark: #0a0b12;
+    --bg-card: rgba(20, 22, 35, 0.9);
+    --purple: #b026ff;
+    --green: #00ff9d;
+    --yellow: #fcee0a;
+    --text-main: #ffffff;
+    --text-muted: #c5c5d5;
+    --glow-purple: 0 0 12px rgba(176, 38, 255, 0.7);
+    --glow-green: 0 0 12px rgba(0, 255, 157, 0.7);
+    --glow-yellow: 0 0 12px rgba(252, 238, 10, 0.7);
+}
+
+/* === BACKGROUND IMAGE === */
+body {
+    position: relative;
+    min-height: 100vh;
+    background-color: #0a0b12;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(10, 11, 18, 0.5);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+/* === BASE === */
+body {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .cyber-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--purple);
+    text-shadow: var(--glow-purple);
+    letter-spacing: 1px;
+}
+
+p, span, label, .form-label, small {
+    color: var(--text-main) !important;
+    font-weight: 400;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--yellow);
+    text-shadow: var(--glow-yellow);
+}
+
+/* === SIDEBAR === */
+.sidebar {
+    background: linear-gradient(180deg, #0f101a 0%, #151724 100%);
+    border-right: 2px solid var(--purple);
+    min-height: 100vh;
+    padding: 20px 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+}
+
+.sidebar-header i {
+    font-size: 1.5rem;
+    color: var(--green);
+}
+
+.nav-link {
+    color: var(--green);
+    margin: 8px 0;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--yellow);
+    background: rgba(252, 238, 10, 0.1);
+    text-shadow: var(--glow-yellow);
+    transform: translateX(5px);
+}
+
+.nav-link i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* === USER SECTION & HOVER DROPDOWN === */
+.user-section {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+.user-btn {
+    background: rgba(17, 17, 17, 0.9);
+    border: 1px solid var(--green);
+    color: var(--text-main);
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.user-btn:hover {
+    border-color: var(--yellow);
+    box-shadow: var(--glow-yellow);
+    background: rgba(252, 238, 10, 0.1);
+}
+
+.user-btn img {
+    border: 2px solid var(--purple);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+/* Скрываем стандартную стрелку Bootstrap */
+.sidebar .dropdown-toggle::after { display: none; }
+
+/* Меню по умолчанию скрыто и позиционируется НАД кнопкой */
+.sidebar .dropdown-menu {
+    position: absolute;
+    bottom: 100%; /* Открывается вверх */
+    left: 0;
+    right: 0;
+    margin-bottom: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--purple);
+    border-radius: 10px;
+    box-shadow: var(--glow-purple);
+    display: none; /* Скрыто */
+    z-index: 1050;
+    padding: 5px 0;
+}
+
+/* Показываем при наведении на контейнер */
+.sidebar .user-section:hover .dropdown-menu {
+    display: block;
+    animation: fadeInUp 0.2s ease;
+}
+
+/* Прозрачная "подушка", чтобы курсор не терял фокус при переходе от кнопки к меню */
+.sidebar .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: transparent;
+}
+
+.sidebar .dropdown-item {
+    color: var(--text-main);
+    padding: 10px 15px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.sidebar .dropdown-item:hover {
+    background: rgba(176, 38, 255, 0.3);
+    color: var(--yellow);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === CARDS === */
+.cyber-card {
+    background: var(--bg-card);
+    border: 1px solid var(--green);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: var(--glow-green);
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.cyber-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 157, 0.5);
+    border-color: var(--yellow);
+}
+
+.cyber-card img {
+    border-radius: 10px;
+    border: 2px solid var(--purple);
+    margin-bottom: 15px;
+}
+
+.price-tag {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--green);
+    text-shadow: var(--glow-green);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* === BUTTONS === */
+.cyber-btn {
+    background: transparent;
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-btn:hover {
+    background: var(--yellow);
+    color: #000;
+    box-shadow: var(--glow-yellow);
+    transform: scale(1.02);
+}
+
+.cyber-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.cyber-btn:hover::before {
+    left: 100%;
+}
+
+.btn-group .cyber-btn {
+    border-radius: 5px !important;
+    border-right: none;
+}
+
+.btn-group .cyber-btn:last-child {
+    border-right: 2px solid var(--yellow);
+}
+
+/* === FORMS === */
+.cyber-form {
+    background: var(--bg-card);
+    border: 1px solid var(--purple);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--glow-purple);
+}
+
+.cyber-form label {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px !important;
+    display: block;
+    color: var(--green) !important;
+}
+
+.cyber-input {
+    background: rgba(15, 16, 26, 0.95) !important;
+    border: 1px solid var(--green) !important;
+    color: var(--text-main) !important;
+    border-radius: 8px !important;
+    padding: 12px 15px !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-size: 1.1rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 0 5px rgba(0, 255, 157, 0.2) !important;
+    width: 100%;
+}
+
+.cyber-input:focus {
+    border-color: var(--purple) !important;
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.6) !important;
+    outline: none !important;
+    background: rgba(20, 22, 35, 0.98) !important;
+}
+
+.cyber-input::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1 !important;
+}
+
+textarea.cyber-input {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* === TABLES === */
+.table-dark {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-main);
+}
+
+.table-dark th {
+    border-bottom: 2px solid var(--purple) !important;
+    color: var(--green) !important;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.table-dark td {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* === UTILITIES === */
+.text-neon {
+    color: var(--purple);
+    text-shadow: var(--glow-purple);
+}
+
+.text-glow-green {
+    text-shadow: var(--glow-green);
+}
+
+.text-glow-yellow {
+    text-shadow: var(--glow-yellow);
+}
+
+.hover-glow:hover {
+    text-shadow: var(--glow-green);
+    color: var(--green) !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 2px solid var(--purple);
+    }
+
+    .sidebar .dropdown-menu {
+        position: relative !important;
+        bottom: auto;
+        width: 100%;
+    }
+
+    .user-section {
+        border-top: 1px solid rgba(0, 255, 157, 0.2);
+        padding-top: 15px;
+    }
+}
+
+/* === CATEGORIES PAGE: COMPACT CARDS === */
+.categories-page .cyber-card {
+    max-height: 380px; /* Было ~430px, уменьшили на 50px */
+    display: flex;
+    flex-direction: column;
+}
+
+.categories-page .cyber-card img {
+    height: 180px; /* Было ~230px */
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.categories-page .cyber-card .card-body {
+    padding: 12px 15px !important;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.categories-page .cyber-card p {
+    font-size: 0.95rem;
+    margin-bottom: 10px !important;
+    flex-grow: 1;
+}
